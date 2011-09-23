@@ -1,4 +1,6 @@
 Relatefoundation::Application.routes.draw do
+  
+  resources :test
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
