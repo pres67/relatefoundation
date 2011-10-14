@@ -1,4 +1,4 @@
-# rails_tr_checkout
+# relatefoundation payment site (demo code)
 
 ## Overview
 
