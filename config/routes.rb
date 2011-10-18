@@ -3,4 +3,7 @@ Rails3TrCheckout::Application.routes.draw do
   match 'payments/confirm' => 'payments#confirm', :as => :confirm_payment
 
   root :to => "payments#new"
+  
+  match '/', :to => 'payments#new'
+  
 end
