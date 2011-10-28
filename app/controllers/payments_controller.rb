@@ -54,7 +54,6 @@ class PaymentsController < ApplicationController
       # extract out the new url as a string
       #signed_url = uri.to_s
       
-      @callback = get_callback
       @amount = calculate_amount
       render :action => "new"
     end

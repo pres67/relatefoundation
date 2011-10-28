@@ -4,11 +4,15 @@ User ID: <%= h @user_id %>
 Sig: <%= h @sig %> (shown for testing)
 Match?: <%= h @status %>
 
-
 <% if @result -%>
-  <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
-<% end -%>
+  <%= @result.inspect %>
+  <% debugger %>
 
+  <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
+  <% for error in @result.errors %>
+    <%= error.message %><br>
+  <% end %>
+<% end -%>
 <%= form_for :transaction,
      :params => @result && @result.params[:transaction],
      :errors => @result && @result.errors.for(:transaction),
@@ -37,7 +41,7 @@ Match?: <%= h @status %>
   <% end -%>
   <%= hidden_field_tag :tr_data, Braintree::TransparentRedirect.transaction_data(
     :redirect_url => confirm_payment_url,
-    :transaction => {:type => "sale", :amount => @amount}
+    :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb}}
   ) %>
   <%= f.submit "Submit" %>
 <% end -%>
