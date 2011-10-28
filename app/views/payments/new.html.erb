@@ -1,6 +1,9 @@
 <h1>Payment: $<%= h @amount %></h1>
 Description: <%= h @description %>
 User ID: <%= h @user_id %>
+Sig: <%= h @sig %> (shown for testing)
+Match?: <%= h @status %>
+
 
 <% if @result -%>
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
@@ -34,7 +37,7 @@ User ID: <%= h @user_id %>
   <% end -%>
   <%= hidden_field_tag :tr_data, Braintree::TransparentRedirect.transaction_data(
     :redirect_url => confirm_payment_url,
-    :transaction => {:type => "sale", :amount => @amount}
+    :transaction => {:type => "sale", :amount => @amount, :cb => @callb}
   ) %>
   <%= f.submit "Submit" %>
 <% end -%>
