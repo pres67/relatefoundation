@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
     
     
        if params[:sig] != expected_sig
-         @newurl = @callback + "?result=invalid"
+         #@newurl = @callback + "?result=invalid"
             render :action => "invalid"
        end
   end
