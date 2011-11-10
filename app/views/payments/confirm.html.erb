@@ -3,10 +3,13 @@
 <div>Thank you for your payment.</div>
 
 <h2>Transaction Details</h2>
+
+
 transaction: <%= @result.transaction.inspect %><br/>
 transaction.customer_details: <%= @result.transaction.customer_details.inspect %><br/>
 transaction.credit_card_details: <%= @result.transaction.credit_card_details.inspect %><br/>
 transaction.custom_fields: <%= @result.transaction.custom_fields.inspect %><br/>
+
 
 <table>
   <tr><td>Amount</td><td>$<%= @result.transaction.amount %></td></tr>
@@ -18,5 +21,5 @@ transaction.custom_fields: <%= @result.transaction.custom_fields.inspect %><br/>
   <tr><td>Card Type:</td><td><%= h @result.transaction.credit_card_details.card_type %></td></tr>
 </table>
 
-<h3>Callback URL: <h3> <%= @result.transaction.custom_fields[:callb] %>
+<h3>Return to <a href="<%= @result.transaction.custom_fields[:callb] %>">Relate Survey</a> </h3>
 

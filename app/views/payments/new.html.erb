@@ -1,13 +1,16 @@
 <h1>Payment: $<%= h @amount %></h1>
+
+<!--
 Description: <%= h @description %>
 User ID: <%= h @user_id %>
 Sig: <%= h @sig %> (shown for testing)
 Match?: <%= h @status %>
 URL: <%= h @whatever %>
 callback: <%= h @uri2 %>
+-->
 
 <% if @result -%>
-  <%= @result.inspect %>
+
   <% #debugger %>
 
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
@@ -46,4 +49,5 @@ callback: <%= h @uri2 %>
     :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb}}
   ) %>
   <%= f.submit "Submit" %>
+  <%= submit_tag "Cancel", :name => "cancel" %>
 <% end -%>
