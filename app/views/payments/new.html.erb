@@ -3,10 +3,12 @@ Description: <%= h @description %>
 User ID: <%= h @user_id %>
 Sig: <%= h @sig %> (shown for testing)
 Match?: <%= h @status %>
+URL: <%= h @whatever %>
+callback: <%= h @uri2 %>
 
 <% if @result -%>
   <%= @result.inspect %>
-  <% debugger %>
+  <% #debugger %>
 
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
   <% for error in @result.errors %>

@@ -1,68 +1,61 @@
+require 'uri'
+
 class PaymentsController < ApplicationController
- 
+  
   def new
     query_string = request.query_string.gsub(/&?sig=.*/, '')
     
     expected_sig = Digest::SHA1.hexdigest(query_string + "r3l@t31nst1tut3")
+    
     @sig = expected_sig
-
     @amount = params[:amount]
     @description = params[:description]
     @user_id = params[:user_id]
     @signature = params[:sig] 
     @callb = params[:callb]
     
-    
        if params[:sig] != expected_sig
-         #@newurl = @callback + "?result=invalid"
             render :action => "invalid"
        end
+       
   end
+  
 
   def confirm
     @result = Braintree::TransparentRedirect.confirm(request.query_string)
     if @result.success?
-      render :action => "confirm"
+              
+      uri = URI.parse(@result.transaction.custom_fields[:callb])
+
+      if uri.query.present?
+        uri.query += "&result=success"
+      else
+        uri.query = "result=success"
+      end
+
+      sig = Digest::SHA1.hexdigest(uri.query + "r3l@t31nst1tut3")
+      uri.query += "&sig=#{sig}"
+      signed_url = uri.to_s
         
-        #url = @callback
-        # parse url into URI object
-        #uri = URI.parse(url)
-        # add ampersand if other params are already present in the url
-        #uri.query += "&" if uri.query.present?
-        # add payment result to callback url (success or cancel)
-        #uri.query += "result=success"
-        # generate a signature for the url
-        #sig = Digest::SHA1.hexdigest(uri.query + "r3l@t31nst1tut3")
-        # add the signature to the url
-        #uri.query += "&sig=#{sig}"
-        # extract out the new url as a string
-        #signed_url = uri.to_s
-      
+        render :action => "confirm"
+            
     else
-      
-      #url = @callback
-      # parse url into URI object
-      #uri = URI.parse(url)
-      # add ampersand if other params are already present in the url
-      #uri.query += "&" if uri.query.present?
-      # add payment result to callback url (success or cancel)
-      #uri.query += "result=cancel"
-      # generate a signature for the url
-      #sig = Digest::SHA1.hexdigest(uri.query + "r3l@t31nst1tut3")
-      # add the signature to the url
-      #uri.query += "&sig=#{sig}"
-      # extract out the new url as a string
-      #signed_url = uri.to_s
-      
-      @amount = calculate_amount
+     / 
+      uri = URI.parse(@result.transaction.custom_fields[:callb])
+
+      if uri.query.present?
+        uri.query += "&result=cancel"
+      else
+        uri.query = "result=cancel"
+      end
+
+      sig = Digest::SHA1.hexdigest(uri.query + "r3l@t31nst1tut3")
+      uri.query += "&sig=#{sig}"
+      signed_url = uri.to_s
+      @uri2 = signed_url
+      /
       render :action => "new"
+      
     end
   end
-
-  protected
-
-  def calculate_amount
-    @amount = params[:amount]    
-  end
-
 end

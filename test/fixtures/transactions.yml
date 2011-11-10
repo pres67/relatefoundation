@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  transaction_id: 1
+  type: MyString
+  amount: 1
+  status: MyString
+  braintree_created_at: 2011-11-10 11:44:01
+  braintree_updated_at: 2011-11-10 11:44:01
+  token: MyString
+  bin: MyString
+  last_4: 1
+  card_type: MyString
+  expiration_date: 2011-11-10 11:44:01
+  cardholder_name: MyString
+  customer_location: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  masked_number: MyString
+  create_at: 2011-11-10 11:44:01
+  callb: MyString
+  user_id: MyString
+  custom_fields_dump: MyString
+  transaction_dump: MyString
+
+two:
+  id: 1
+  transaction_id: 1
+  type: MyString
+  amount: 1
+  status: MyString
+  braintree_created_at: 2011-11-10 11:44:01
+  braintree_updated_at: 2011-11-10 11:44:01
+  token: MyString
+  bin: MyString
+  last_4: 1
+  card_type: MyString
+  expiration_date: 2011-11-10 11:44:01
+  cardholder_name: MyString
+  customer_location: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  masked_number: MyString
+  create_at: 2011-11-10 11:44:01
+  callb: MyString
+  user_id: MyString
+  custom_fields_dump: MyString
+  transaction_dump: MyString
