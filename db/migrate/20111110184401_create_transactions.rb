@@ -23,7 +23,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :callb
       t.string :user_id
       t.string :custom_fields_dump
-      t.string :transaction_dump
+      t.text :transaction_dump
 
       t.timestamps
     end
