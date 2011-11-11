@@ -35,6 +35,7 @@ class PaymentsController < ApplicationController
   def confirm
     
     @result = Braintree::TransparentRedirect.confirm(request.query_string)
+    
     if @result.success?
            
       user_id = @result.transaction.custom_fields[:user_id]
@@ -75,14 +76,15 @@ class PaymentsController < ApplicationController
       callb = URI.parse(@result.transaction.custom_fields[:callb])
       add_params(callb, 'result' => 'success')
       sign_uri(callb)
-      redirect_to callb.to_s
-          
+      #redirect_to callb.to_s
+       
+       render :action => "confirm"   
     else
   
       TransactionFailure.create!(:status => "failure", :result_dump => @result.inspect, :result_params_dump => @result.params.inspect)
   
       @amount = @result.params[:transaction][:amount]
-      @description = ''
+      @description = @result.params[:transaction][:custom_fields][:description]
       @user_id = @result.params[:transaction][:custom_fields][:user_id]
       @callb = @result.params[:transaction][:custom_fields][:callb]
   

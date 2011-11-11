@@ -1,7 +1,7 @@
 <h1>Payment: $<%= h @amount %></h1>
+Description: <%= h @description %>
 
 <!--
-Description: <%= h @description %>
 User ID: <%= h @user_id %>
 Sig: <%= h @sig %> (shown for testing)
 Match?: <%= h @status %>
@@ -10,6 +10,7 @@ callback: <%= h @uri2 %>
 -->
 
 <% if @result -%>
+<!--
 <pre><code>
   <%= h @result.errors.inspect %>
   <%= h @result.inspect %>
@@ -17,6 +18,8 @@ callback: <%= h @uri2 %>
   <%= h @result.transaction.inspect %>
   <% #debugger %>
 </code></pre>
+-->  
+  
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
   <% for error in @result.errors %>
     <%= error.message %><br>
@@ -50,7 +53,7 @@ callback: <%= h @uri2 %>
   <% end -%>
   <%= hidden_field_tag :tr_data, Braintree::TransparentRedirect.transaction_data(
     :redirect_url => confirm_payment_url,
-    :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb, :user_id => @user_id}}
+    :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb, :user_id => @user_id, :description => @description}}
   ) %>
   <%= f.submit "Submit" %>
 <% end -%>
