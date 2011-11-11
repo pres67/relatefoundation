@@ -1,24 +1,29 @@
-<h1>Payment: $<%= h @amount %></h1>
-Description: <%= h @description %>
+  <div class="header">
+    
+    <a title="Home" class="logo" href="http://www.relatefoundation.org"><img src="../images/logo.png" style="border-width:0px;"></a>
+    
+  </div><!-- header -->
 
-<!--
-User ID: <%= h @user_id %>
-Sig: <%= h @sig %> (shown for testing)
-Match?: <%= h @status %>
-URL: <%= h @whatever %>
-callback: <%= h @uri2 %>
--->
 
-<% if @result -%>
-<!--
-<pre><code>
-  <%= h @result.errors.inspect %>
-  <%= h @result.inspect %>
-  <%= h @result.params.inspect %>
-  <%= h @result.transaction.inspect %>
-  <% #debugger %>
-</code></pre>
--->  
+  <div class="page">
+    <h1>Relate Institute Purchasing Page</h1>
+    
+    <div class="pageRight">
+      <h2>Purchase Information<br /><br /></h2>
+      
+      <div class="descriptionItems">
+      <h3>
+        <%= h @description %> <br /><br />
+        All purchases from the Relatefoundation are final.  No refunds will be offered after a survey has been completed.  Upon completion of the survey, your report will be provided to you via e-mail. <br /><br />
+        <h2>Total Price:  $<%= h @amount %> <br /><br /></h2>
+      </h3>
+      </div><!-- descriptionItems -->
+    
+    </div><!-- pageRight -->
+      
+    <div class="pageLeft">
+
+<% if @result -%> 
   
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
   <% for error in @result.errors %>
@@ -55,6 +60,47 @@ callback: <%= h @uri2 %>
     :redirect_url => confirm_payment_url,
     :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb, :user_id => @user_id, :description => @description}}
   ) %>
-  <%= f.submit "Submit" %>
+  <br />
+  <%= f.submit "Submit Payment" %>  <span style="text-align:right;"><%= link_to 'Cancel', cancel_payment_path(:callb => @callb) %></span>
 <% end -%>
-<%= link_to 'Cancel', cancel_payment_path(:callb => @callb) %>
+
+      </div><!-- pageLeft -->
+  
+      <div class="footer">
+  
+        <div class="footerLeft">
+          &copy; 2011
+          <span id="ct100_lblCopyright">RELATE Institute. All Rights Reserved.</span>
+        </div><!-- footer left -->
+      
+      <div class="footerRight">
+
+      	<select name="ctl00$LanguageArea$cultureDropDown" onchange="javascript:setTimeout('__doPostBack(\'ctl00$LanguageArea$cultureDropDown\',\'\')', 0)" id="ctl00_LanguageArea_cultureDropDown">
+      	<option selected="selected" value="1">English (United States)</option>
+      	<option value="2">English (United Kingdom)</option>
+      	<option value="3">italiano (Italia)</option>
+      	<option value="4">Espa&#241;ol (M&#233;xico)</option>
+      	<option value="10">Portugu&#234;s (Brasil)</option>
+      	<option value="11">svenska (Sverige)</option>
+      	<option value="12">Deutsch (Deutschland)</option>
+      	<option value="13">T&#252;rk&#231;e (T&#252;rkiye)</option>
+      	<option value="14">中文(中华人民共和国)</option>
+      	<option value="15">日本語 (日本)</option>
+      	<option value="17">English (Australia)</option>
+      	<option value="24">한국어 (대한민국)</option>
+
+      </select>					
+
+      </div><!-- footerRight -->
+    
+      					<a id="ctl00_lnkBtmPrivacy" href="About/Privacy.aspx">Privacy policy</a>
+      					|
+      					<a id="ctl00_lnkBtmAboutUs" href="About/Default.aspx">About us</a>
+      					|
+      					<a id="ctl00_lnkBtmContactUs" href="About/ContactUs.aspx">Contact us</a>
+      					|
+      					<a id="ctl00_lnkBtmFaq" href="About/Faq.aspx">Help</a>      
+    
+    </div><!--footer -->
+  </div><!-- page -->
+  
