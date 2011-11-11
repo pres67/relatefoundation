@@ -1,4 +1,5 @@
 Rails3TrCheckout::Application.configure do
+  config.middleware.use "SslOnly"
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.

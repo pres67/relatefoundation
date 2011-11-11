@@ -10,11 +10,13 @@ callback: <%= h @uri2 %>
 -->
 
 <% if @result -%>
+<pre><code>
   <%= h @result.errors.inspect %>
   <%= h @result.inspect %>
+  <%= h @result.params.inspect %>
   <%= h @result.transaction.inspect %>
   <% #debugger %>
-
+</code></pre>
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
   <% for error in @result.errors %>
     <%= error.message %><br>
@@ -51,5 +53,5 @@ callback: <%= h @uri2 %>
     :transaction => {:type => "sale", :amount => @amount, :custom_fields => {:callb => @callb, :user_id => @user_id}}
   ) %>
   <%= f.submit "Submit" %>
-  <%= submit_tag "Cancel", :name => "cancel" %>
 <% end -%>
+<%= link_to 'Cancel', cancel_payment_path(:callb => @callb) %>
