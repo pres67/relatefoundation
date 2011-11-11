@@ -69,8 +69,10 @@ class PaymentsController < ApplicationController
         :masked_number => @result.transaction.id, 
         :callb => @result.transaction.custom_fields[:callb], 
         :user_id => @result.transaction.custom_fields[:user_id], 
-        :custom_fields_dump => @result.transaction.custom_fields.inspect, 
-        :transaction_dump => @result.transaction.inspect
+        #:custom_fields_dump => @result.transaction.custom_fields.inspect, 
+        #:transaction_dump => @result.transaction.inspect
+        :custom_fields_dump => "", 
+        :transaction_dump => ""
       )
 
       callb = URI.parse(@result.transaction.custom_fields[:callb])
@@ -81,7 +83,9 @@ class PaymentsController < ApplicationController
       # render :action => "confirm"   
     else
   
-      TransactionFailure.create!(:status => "failure", :result_dump => @result.inspect, :result_params_dump => @result.params.inspect)
+      #TransactionFailure.create!(:status => "failure", :result_dump => @result.inspect, :result_params_dump => @result.params.inspect)
+  
+      TransactionFailure.create!(:status => "failure", :result_dump => "", :result_params_dump => "")
   
       @amount = @result.params[:transaction][:amount]
       @description = @result.params[:transaction][:custom_fields][:description]
