@@ -47,15 +47,15 @@ before_filter :page_load, :only => [:new, :confim]
       uri.query += "&sig=#{sig}"
       signed_url = uri.to_s
       
+      
     
   if(Customer.where(:user_id => params[:user_id]).first)
     #update record - HOW TO DO THIS? I KNOW MYSQL, BUT NOT THIS :)
   else
     
         
-    Customer.create!(
-    :id => @result.transaction.id, 
-    :user_id => "userid", 
+    Customer.create!( 
+    :user_id => @result.transaction.custom_fields[:user_id], 
     :first_name => @result.transaction.customer_details.first_name, 
     :last_name => @result.transaction.customer_details.last_name, 
     :email => @result.transaction.customer_details.email, 
@@ -63,9 +63,9 @@ before_filter :page_load, :only => [:new, :confim]
     :updated_at => "12/12/2011")
   
   end
+  
     
-    Transaction.create!(
-    :id => @result.transaction.id, 
+    Transaction.create!( 
     :transaction_id =>@result.transaction.id, 
     :type => @result.transaction.type, 
     :amount => @result.transaction.amount, 
@@ -85,10 +85,11 @@ before_filter :page_load, :only => [:new, :confim]
     :masked_number => @result.transaction.id, 
     :created_at => @result.transaction.created_at, 
     :callb => signed_url, 
-    :user_id => @result.transaction.id, 
+    :user_id => @result.transaction.custom_fields[:user_id], 
     :custom_fields_dump => @result.transaction.custom_fields.inspect, 
     :transaction_dump => @result.transaction.inspect
     )
+  
   
       render :action => "confirm"
             
