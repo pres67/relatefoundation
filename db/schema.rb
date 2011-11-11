@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110184401) do
+ActiveRecord::Schema.define(:version => 20111111040342) do
 
   create_table "callbacks", :force => true do |t|
     t.string   "url"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20111110184401) do
 
   create_table "page_loads", :force => true do |t|
     t.string   "url"
-    t.datetime "create_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(:version => 20111110184401) do
     t.string   "last_name"
     t.string   "email"
     t.string   "masked_number"
-    t.datetime "create_at"
     t.string   "callb"
     t.string   "user_id"
     t.string   "custom_fields_dump"
