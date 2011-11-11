@@ -187,6 +187,10 @@ div.header {
     width: 100%;
 }
 
+.confirmPage {
+    padding:20px;
+}
+
 .sub-nav-container {
     background: #EEEEEE url(../images/dots.gif) repeat-y scroll top right;
     height: 100%;

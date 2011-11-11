@@ -1,5 +1,15 @@
+<div class="header">
+  
+  <a title="Home" class="logo" href="http://www.relatefoundation.org"><img src="../images/logo.png" style="border-width:0px;"></a>
+  
+</div><!-- header -->
+
+<div class="page">
+
 <h1>Payment Result</h1>
 
+  <div class="confirmPage">
+  
 <div>Thank you for your payment.</div>
 
 <h2>Transaction Details</h2>
@@ -14,4 +24,46 @@
   <tr><td>Card Type:</td><td><%= h @result.transaction.credit_card_details.card_type %></td></tr>
 </table>
 
-<h3>Return to <a href="<%= @result.transaction.custom_fields[:callb] %>">Relate Survey</a> </h3>
+<h3>Return to <a href="https://relatefoundation.heroku.com/?amount=123&description=RelateSurvey&user_id=7jl3k&callb=http://www.google.com&user_id=1234&sig=2bb9097c0368cbe77710a2aad34c243502c2adb2">Purchasing Page</a> </h3>
+
+  </div><!-- confirmPage -->
+  
+<div class="footer">
+
+  <div class="footerLeft">
+    &copy; 2011
+    <span id="ct100_lblCopyright">RELATE Institute. All Rights Reserved.</span>
+  </div><!-- footer left -->
+
+<div class="footerRight">
+
+	<select name="ctl00$LanguageArea$cultureDropDown" onchange="javascript:setTimeout('__doPostBack(\'ctl00$LanguageArea$cultureDropDown\',\'\')', 0)" id="ctl00_LanguageArea_cultureDropDown">
+	<option selected="selected" value="1">English (United States)</option>
+	<option value="2">English (United Kingdom)</option>
+	<option value="3">italiano (Italia)</option>
+	<option value="4">Espa&#241;ol (M&#233;xico)</option>
+	<option value="10">Portugu&#234;s (Brasil)</option>
+	<option value="11">svenska (Sverige)</option>
+	<option value="12">Deutsch (Deutschland)</option>
+	<option value="13">T&#252;rk&#231;e (T&#252;rkiye)</option>
+	<option value="14">中文(中华人民共和国)</option>
+	<option value="15">日本語 (日本)</option>
+	<option value="17">English (Australia)</option>
+	<option value="24">한국어 (대한민국)</option>
+
+</select>					
+
+</div><!-- footerRight -->
+
+					<a id="ctl00_lnkBtmPrivacy" href="About/Privacy.aspx">Privacy policy</a>
+					|
+					<a id="ctl00_lnkBtmAboutUs" href="About/Default.aspx">About us</a>
+					|
+					<a id="ctl00_lnkBtmContactUs" href="About/ContactUs.aspx">Contact us</a>
+					|
+					<a id="ctl00_lnkBtmFaq" href="About/Faq.aspx">Help</a>      
+
+</div><!--footer -->
+
+
+</div><!-- page -->
