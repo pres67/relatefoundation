@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111040342) do
+ActiveRecord::Schema.define(:version => 20111111063841) do
 
   create_table "callbacks", :force => true do |t|
     t.string   "url"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20111111040342) do
 
   create_table "transaction_failures", :force => true do |t|
     t.string   "status"
-    t.string   "result_dump"
-    t.string   "result_params_dump"
+    t.text     "result_dump",        :limit => 255
+    t.text     "result_params_dump", :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20111111040342) do
     t.string   "callb"
     t.string   "user_id"
     t.string   "custom_fields_dump"
-    t.string   "transaction_dump"
+    t.text     "transaction_dump",     :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

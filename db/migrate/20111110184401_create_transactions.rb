@@ -22,8 +22,8 @@ class CreateTransactions < ActiveRecord::Migration
       t.datetime :create_at
       t.string :callb
       t.string :user_id
-      t.text :custom_fields_dump
-      t.text :transaction_dump
+      t.string :custom_fields_dump
+      t.string :transaction_dump
 
       t.timestamps
     end

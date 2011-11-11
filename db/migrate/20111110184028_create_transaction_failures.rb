@@ -3,8 +3,8 @@ class CreateTransactionFailures < ActiveRecord::Migration
     create_table :transaction_failures do |t|
       t.integer :id
       t.string :status
-      t.text :result_dump
-      t.text :result_params_dump
+      t.string :result_dump
+      t.string :result_params_dump
 
       t.timestamps
     end
