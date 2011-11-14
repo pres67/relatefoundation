@@ -11,8 +11,10 @@ class PaymentsController < ApplicationController
     expected_sig = Digest::SHA1.hexdigest(query_string + "r3l@t31nst1tut3")
     
     if params[:sig] != expected_sig
-      render :action => "invalid"
-      return
+      #@callb = params[:callb]
+      #@result="Invalid Payment URL.  Please return to the relatefoundation website and attempt your purchase again."
+      #render :action => "invalid"
+      #return
     end
     
     @signature = params[:sig] # just for testing
@@ -34,7 +36,18 @@ class PaymentsController < ApplicationController
   
   def confirm
     
+  begin
+      
     @result = Braintree::TransparentRedirect.confirm(request.query_string)
+    
+  rescue
+    
+    @result = "Improper Navigation.  If you reached the confirmation page prior to receiving this error, your payment was successful.  Otherwise, please contact support to determine the status of your payment."
+    
+    render :action => "invalid"
+  
+  else
+    
     
     if @result.success?
            
@@ -79,16 +92,21 @@ class PaymentsController < ApplicationController
       #redirect_to callb.to_s
        
       render :action => "confirm"   
-    else
   
-      TransactionFailure.create!(:status => "failure", :result_dump => @result.inspect, :result_params_dump => @result.params.inspect)
+      
+      else 
+  
+      TransactionFailure.create!(:status => "error", :result_dump => @result.inspect, :result_params_dump => @result.params.inspect)
   
       @amount = @result.params[:transaction][:amount]
       @description = @result.params[:transaction][:custom_fields][:description]
       @user_id = @result.params[:transaction][:custom_fields][:user_id]
       @callb = @result.params[:transaction][:custom_fields][:callb]
-  
+      
+    
       render :action => "new"
+    
+    end 
     
     end
   end

@@ -5,10 +5,18 @@
   </div><!-- header -->
 
   <div class="page">
-
-    <h1>This is an invalid payment url.</h1>
+    <h1>Navigation Error</h1>
+      <div class="confirmPage">
+          <h2><%= @result %></h2>
+      
+      </div><!-- confirmPage -->
     <div class="confirmPage">
-    <h2><a href="http://www.relationfoundation.org">RETURN HOME</a></h2>
+      
+        <% if @callb %> 
+        <h3><%= link_to "RETURN TO RELATEFOUNDATION", @callb %></h3>
+        <% else %>
+    <h3><a href="http://www.relationfoundation.org">RETURN TO RELATEFOUNDATION</a></h3>
+        <% end %>
     </div>
     <div class="footer">
 

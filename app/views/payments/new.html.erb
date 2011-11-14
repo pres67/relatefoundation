@@ -25,7 +25,7 @@
     <div class="pageLeft">
 
 <% if @result -%> 
-  
+
   <div style="color: red;"><%= h @result.errors.size %> error(s)</div>
   <% for error in @result.errors %>
     <%= error.message %><br>
